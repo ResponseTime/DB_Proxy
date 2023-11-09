@@ -1,0 +1,64 @@
+{
+    "tables": {
+        "users": {
+            "columns": [
+                "id ",
+                "username ",
+                "email ",
+                "password "
+            ],
+            "data-type": [
+                "INT",
+                "VARCHAR(50)",
+                "VARCHAR(100)",
+                "VARCHAR(100)"
+            ],
+            "options": [
+                "GENERATED ALWAYS AS IDENTITY,PRIMARY KEY",
+                "NOT NULL",
+                "NOT NULL",
+                "NOT NULL"
+            ]
+        },
+        "products": {
+            "columns": [
+                "id",
+                "name",
+                "description ",
+                "price ",
+                "stock "
+            ],
+            "data-type": [
+                "INT",
+                "VARCHAR(255)",
+                "TEXT",
+                "DECIMAL(10, 2)",
+                "INT"
+            ],
+            "options": [
+                "GENERATED ALWAYS AS IDENTITY, PRIMARY KEY",
+                "NOT NULL",
+                "",
+                "NOT NULL",
+                "NOT NULL"
+            ]
+        },
+        "coments": {
+            "columns": [
+                "id",
+                "product_id",
+                "body"
+            ],
+            "data-type": [
+                "INT",
+                "INT",
+                "TEXT"
+            ],
+            "options": [
+                "GENERATED ALWAYS AS IDENTITY, PRIMARY KEY",
+                "FOREIGN KEY REFERENCES products(id)",
+                ""
+            ]
+        }
+    }
+}

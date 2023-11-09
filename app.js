@@ -2,6 +2,7 @@ require("dotenv").config();
 const express = require("express");
 const { Pool } = require("pg");
 const app = express();
+const configurator = require("./schema_config.js");
 const port = 3000;
 
 const pool = new Pool({
@@ -12,16 +13,12 @@ const pool = new Pool({
   port: 5432,
 });
 
-app.get("/", (req, res) => {
-  pool.query("SELECT NOW()", (err, result) => {
-    if (err) {
-      res.status(500).send(err.message);
-    } else {
-      res.status(200).json(result.rows[0]);
-    }
-  });
-});
+app.post("/insert/:table", (req, res) => {});
+app.get("/select/:table", (req, res) => {});
+app.post("/select/:table", (req, res) => {});
+app.delete("/delete/:table/:id", (req, res) => {});
 
 app.listen(port, () => {
   console.log(`App listening at http://localhost:${port}`);
+  configurator.config();
 });
