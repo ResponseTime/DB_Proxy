@@ -56,7 +56,7 @@
             ],
             "options": [
                 "PRIMARY KEY",
-                "FOREIGN KEY REFERENCES products(id)",
+                "REFERENCES products(id)",
                 ""
             ]
         }
