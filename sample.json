@@ -7,7 +7,7 @@
                 "email",
                 "password"
             ],
-            "datatype": [
+            "data-type": [
                 "INT",
                 "VARCHAR(50)",
                 "VARCHAR(100)",
@@ -28,7 +28,7 @@
                 "price ",
                 "stock "
             ],
-            "datatype": [
+            "data-type": [
                 "INT",
                 "VARCHAR(255)",
                 "TEXT",
@@ -49,16 +49,17 @@
                 "product_id",
                 "body"
             ],
-            "datatype": [
+            "data-type": [
                 "INT",
                 "INT",
                 "TEXT"
             ],
             "options": [
-                "PRIMARY KEY",
+                " PRIMARY KEY",
                 "FOREIGN KEY REFERENCES products(id)",
                 ""
             ]
-        }
+        },
+        "test": "SELECT EXISTS ( SELECT 1 FROM pg_tablesWHERE tablename = 'emp_details') AS table_existence;"
     }
 }
