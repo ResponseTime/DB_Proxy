@@ -2,23 +2,6 @@ const fs = require("fs");
 const path = require("path");
 const db = require("./db-config.js");
 
-function checkTableColumns(table, columns) {
-  const query = `SELECT column_name FROM information_schema.columns WHERE table_name = $1`;
-  db.query(query, [table], (err, res) => {
-    if (err) {
-      console.error("Error executing query", err);
-      return;
-    }
-
-    const columnNames = res.rows.map((row) => row.column_name);
-    console.log("Column names:", table, columnNames);
-  });
-}
-
-function setCharAt(str, index, chr) {
-  if (index > str.length - 1) return str;
-  return str.substring(0, index) + chr + str.substring(index + 1);
-}
 function config() {
   // prettier-ignore
   const schemaFile = JSON.parse(fs.readFileSync(path.join(__dirname, "schema.json")),"utf8");
@@ -35,14 +18,27 @@ function config() {
         if (!res) {
 			const columnsDefinition = columns.map((col, i) => `${col} ${datatypes[i]} ${options[i]}`);
 			const queryBuilder = `CREATE TABLE ${table} (${columnsDefinition.join(",")})`;
-          db.query(queryBuilder, (err, result) => {
-            if (err) {
-              throw err;
-            }
-            console.log(result);
-          });
+          db.query(queryBuilder);
         } else {
-          checkTableColumns(table, columns);
+			const query = `SELECT column_name FROM information_schema.columns WHERE table_name = $1`;
+			db.query(query, [table], (err, res) => {
+			  if (err) {
+				console.error("Error executing query", err);
+				return;
+			  }
+			  const columnNames = res.rows.map((row) => row.column_name);
+			  newCols = columns.filter((column) => !columnNames.includes(column));
+			  if(newCols.length > 0) {
+				  let idx = newCols.map((column) => columns.indexOf(column))
+				  let definition = idx.map((i)=>`${columns[i]} ${datatypes[i]} ${options[i]}`)
+				  let queryAdd = `ALTER TABLE ${table} ADD ${definition.join(" ")}`
+				  db.query(queryAdd,(err, res) =>{
+					 if (err) {
+						throw err
+					}
+			  	})
+			}	
+			});
         }
       }
     );

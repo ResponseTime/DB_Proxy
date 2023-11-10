@@ -5,19 +5,22 @@
                 "id",
                 "username",
                 "email",
-                "password"
+                "password",
+                "colorTest"
             ],
             "datatype": [
                 "INT",
                 "VARCHAR(50)",
                 "VARCHAR(100)",
-                "VARCHAR(100)"
+                "VARCHAR(100)",
+                "VARCHAR(255)"
             ],
             "options": [
                 "PRIMARY KEY",
                 "NOT NULL",
                 "NOT NULL",
-                "NOT NULL"
+                "NOT NULL",
+                ""
             ]
         },
         "products": {
@@ -25,8 +28,8 @@
                 "id",
                 "name",
                 "description",
-                "price ",
-                "stock "
+                "price",
+                "stock"
             ],
             "datatype": [
                 "INT",
@@ -47,16 +50,19 @@
             "columns": [
                 "id",
                 "product_id",
-                "body"
+                "body",
+                "testCol"
             ],
             "datatype": [
                 "INT",
                 "INT",
-                "TEXT"
+                "TEXT",
+                "INT"
             ],
             "options": [
                 "PRIMARY KEY",
                 "REFERENCES products(id)",
+                "",
                 ""
             ]
         }
