@@ -1,70 +1,49 @@
 {
-    "tables": {
-        "users": {
-            "columns": [
-                "id",
-                "username",
-                "email",
-                "password",
-                "colorTest"
-            ],
-            "datatype": [
-                "INT",
-                "VARCHAR(50)",
-                "VARCHAR(100)",
-                "VARCHAR(100)",
-                "VARCHAR(255)"
-            ],
-            "options": [
-                "PRIMARY KEY",
-                "NOT NULL",
-                "NOT NULL",
-                "NOT NULL",
-                ""
-            ]
-        },
-        "products": {
-            "columns": [
-                "id",
-                "name",
-                "description",
-                "price",
-                "stock"
-            ],
-            "datatype": [
-                "INT",
-                "VARCHAR(255)",
-                "TEXT",
-                "DECIMAL(10, 2)",
-                "INT"
-            ],
-            "options": [
-                "PRIMARY KEY",
-                "NOT NULL",
-                "",
-                "NOT NULL",
-                "NOT NULL"
-            ]
-        },
-        "coments": {
-            "columns": [
-                "id",
-                "product_id",
-                "body",
-                "testCol"
-            ],
-            "datatype": [
-                "INT",
-                "INT",
-                "TEXT",
-                "INT"
-            ],
-            "options": [
-                "PRIMARY KEY",
-                "REFERENCES products(id)",
-                "",
-                ""
-            ]
-        }
-    }
+    "users": [
+        "id SERIAL PRIMARY KEY",
+        "username VARCHAR(255) NOT NULL",
+        "email VARCHAR(255) NOT NULL",
+        "password VARCHAR(255) NOT NULL",
+        "testColUsers INT",
+        "testCol2Users INT"
+    ],
+    "posts": [
+        "id SERIAL PRIMARY KEY",
+        "title VARCHAR(255) NOT NULL",
+        "content TEXT",
+        "user_id INT REFERENCES users(id)",
+        "testColPosts INT",
+        "icolposts INT",
+        "icol2posts INT"
+    ],
+    "comments": [
+        "id SERIAL PRIMARY KEY",
+        "text TEXT NOT NULL",
+        "user_id INT REFERENCES users(id)",
+        "post_id INT REFERENCES posts(id)",
+        "testCol INT",
+        "testCol2 INT",
+        "icol INT"
+    ],
+    "testSchema": [
+        "name TEXT NOT NULL",
+        "AGE INT NOT NULL",
+        "Postal_code INT NOT NULL"
+    ],
+    "testSchema2": [
+        "name TEXT NOT NULL",
+        "AGE INT NOT NULL",
+        "Postal_code INT NOT NULL",
+        "address TEXT NOT NULL"
+    ],
+    "testSchema3": [
+        "name TEXT NOT NULL",
+        "AGE INT NOT NULL",
+        "Postal_code INT NOT NULL"
+    ],
+    "testSchema4": [
+        "name TEXT NOT NULL",
+        "AGE INT NOT NULL",
+        "Postal_code INT NOT NULL"
+    ]
 }
