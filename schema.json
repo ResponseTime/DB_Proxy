@@ -14,7 +14,10 @@
         "user_id INT REFERENCES users(id)",
         "testColPosts INT",
         "icolposts INT",
-        "icol2posts INT"
+        "icol2posts INT",
+        "newColTestPost INT",
+        "new3 INT",
+        "new4 INT"
     ],
     "comments": [
         "id SERIAL PRIMARY KEY",
@@ -23,12 +26,18 @@
         "post_id INT REFERENCES posts(id)",
         "testCol INT",
         "testCol2 INT",
-        "icol INT"
+        "icol INT",
+        "newColTestCommets INT",
+        "newColTestCommets2 INT",
+        "test1 INT",
+        "test2 INT",
+        "newT3 INT"
     ],
     "testSchema": [
         "name TEXT NOT NULL",
         "AGE INT NOT NULL",
-        "Postal_code INT NOT NULL"
+        "Postal_code INT NOT NULL",
+        "testscheam INT"
     ],
     "testSchema2": [
         "name TEXT NOT NULL",
@@ -45,5 +54,22 @@
         "name TEXT NOT NULL",
         "AGE INT NOT NULL",
         "Postal_code INT NOT NULL"
+    ],
+    "testSchema5": [
+        "name TEXT NOT NULL",
+        "AGE INT NOT NULL",
+        "Postal_code INT NOT NULL"
+    ],
+    "users2": [
+        "id SERIAL PRIMARY KEY",
+        "username VARCHAR(255) NOT NULL",
+        "email VARCHAR(255) NOT NULL",
+        "password VARCHAR(255) NOT NULL"
+    ],
+    "posts2": [
+        "id SERIAL PRIMARY KEY",
+        "title VARCHAR(255) NOT NULL",
+        "content TEXT",
+        "user_id INT REFERENCES users2(id)"
     ]
 }
